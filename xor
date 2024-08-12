@@ -1,0 +1,31 @@
+module xor_gate(
+    input a,
+    input b,
+    output y
+);
+
+assign y = a ^ b; // XOR operation
+
+endmodule
+
+module xor_gate_gate_level(
+    input a,
+    input b,
+    output y
+);
+
+wire not_a, not_b;
+wire and1, and2;
+
+// NOT gates
+not (not_a, a);
+not (not_b, b);
+
+// AND gates
+and (and1, not_a, b);
+and (and2, a, not_b);
+
+// OR gate
+or (y, and1, and2);
+
+endmodule
