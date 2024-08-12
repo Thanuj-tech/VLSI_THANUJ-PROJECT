@@ -1,0 +1,19 @@
+module nor_gate (
+    input A,
+    input B,
+    output Y
+);
+    assign Y = ~(A | B);
+endmodule
+
+module nor_gate (
+    input A,
+    input B,
+    output Y
+);
+    wire temp;
+
+    or U1 (temp, A, B);   // OR gate
+    not U2 (Y, temp);     // NOT gate
+
+endmodule
