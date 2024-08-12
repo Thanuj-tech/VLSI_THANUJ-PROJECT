@@ -5,7 +5,6 @@ module org(a, b, c);
   assign c = (a|b);
 endmodule
 
-
 module org_tb;
 reg a,b;
 wire c;
