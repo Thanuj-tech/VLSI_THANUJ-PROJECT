@@ -1,0 +1,18 @@
+module not_gate(
+    input a,      // Input signal
+    output y      // Output signal
+);
+
+    assign y = ~a;  // NOT operation
+
+endmodule
+
+
+module not_gate_gate_level(
+    input a,      // Input signal
+    output y      // Output signal
+);
+
+    not (y, a);   // NOT gate instantiation
+
+endmodule
