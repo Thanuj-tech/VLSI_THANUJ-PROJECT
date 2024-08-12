@@ -1,0 +1,22 @@
+module xnor_gate_behavioral (
+    input wire a,
+    input wire b,
+    output wire y
+);
+    assign y = ~(a ^ b); // XNOR operation
+endmodule
+
+
+module xnor_gate_gatelevel (
+    input wire a,
+    input wire b,
+    output wire y
+);
+    wire not_a, not_b, a_and_not_b, not_a_and_b, a_and_b, not_a_and_not_b;
+
+    not u1 (not_a, a);
+    not u2 (not_b, b);
+    and u3 (a_and_b, a, b);
+    and u4 (not_a_and_not_b, not_a, not_b);
+    or u5 (y, a_and_b, not_a_and_not_b);
+endmodule
