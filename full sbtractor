@@ -1,0 +1,25 @@
+module full_subtractor(
+    input A, B, Bin,
+    output D, Bout
+);
+    assign D = A ^ B ^ Bin;                // Difference
+    assign Bout = (~A & B) | (Bin & (~A ^ B));  // Borrow out
+endmodule
+
+
+module full_subtractor(
+    input A, B, Bin,
+    output D, Bout
+);
+    wire w1, w2, w3, w4, w5;
+
+    // XOR gates for difference calculation
+    xor (w1, A, B);
+    xor (D, w1, Bin);
+
+    // AND gates and OR gate for borrow out calculation
+    and (w2, ~A, B);
+    and (w3, ~w1, Bin);
+    or  (Bout, w2, w3);
+
+endmodule
