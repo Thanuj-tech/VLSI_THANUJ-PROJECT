@@ -7,9 +7,7 @@ endmodule
 
 
 
-    a=1'b0;b= 1'b1;
-    #10 // Code your testbench here
-// or browse Examples
+  
 module andg_tb;
 reg a,b;
 wire c;
