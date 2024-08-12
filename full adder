@@ -1,0 +1,30 @@
+module full_adder (
+    input A,     // Input bit A
+    input B,     // Input bit B
+    input Cin,   // Input carry
+    output Sum,  // Output sum
+    output Cout  // Output carry
+);
+    assign Sum = A ^ B ^ Cin;         // Sum is the XOR of A, B, and Cin
+    assign Cout = (A & B) | (B & Cin) | (Cin & A);  // Cout is calculated by considering all possible combinations that result in a carry
+endmodule
+
+
+module full_adder_gate (
+    input A,     // Input bit A
+    input B,     // Input bit B
+    input Cin,   // Input carry
+    output Sum,  // Output sum
+    output Cout  // Output carry
+);
+    wire xor1_out, and1_out, and2_out, and3_out;
+
+    xor xor1(xor1_out, A, B);         // First XOR gate to find A ^ B
+    xor xor2(Sum, xor1_out, Cin);     // Second XOR gate to find the final Sum
+
+    and and1(and1_out, A, B);         // AND gate for A & B
+    and and2(and2_out, B, Cin);       // AND gate for B & Cin
+    and and3(and3_out, Cin, A);       // AND gate for Cin & A
+
+    or or1(Cout, and1_out, and2_out, and3_out);  // OR gate for final carry out
+endmodule
