@@ -1,0 +1,36 @@
+module half_subtractor(
+    input A,     // Minuend
+    input B,     // Subtrahend
+    output Difference, // A - B
+    output Borrow      // Borrow signal
+);
+    
+    // Difference is A XOR B
+    assign Difference = A ^ B;
+
+    // Borrow is NOT A AND B
+    assign Borrow = (~A) & B;
+
+endmodule
+
+
+module half_subtractor_gate_level(
+    input A,     // Minuend
+    input B,     // Subtrahend
+    output Difference, // A - B
+    output Borrow      // Borrow signal
+);
+    
+    wire not_A;
+    wire and1_out;
+    
+    // NOT gate for A
+    not u1 (not_A, A);
+    
+    // AND gate for Borrow
+    and u2 (Borrow, not_A, B);
+    
+    // XOR gate for Difference
+    xor u3 (Difference, A, B);
+
+endmodule
