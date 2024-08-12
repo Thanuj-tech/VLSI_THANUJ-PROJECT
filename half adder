@@ -1,0 +1,32 @@
+module half_adder (
+    input A, 
+    input B,
+    output Sum, 
+    output Carry
+);
+
+    // Sum is the XOR of A and B
+    assign Sum = A ^ B;
+    
+    // Carry is the AND of A and B
+    assign Carry = A & B;
+
+endmodule
+
+module half_adder_gate_level (
+    input A, 
+    input B,
+    output Sum, 
+    output Carry
+);
+
+    wire A_xor_B; // Intermediate wire to hold XOR result
+
+    // XOR gate for Sum
+    xor xor1(A_xor_B, A, B);
+    assign Sum = A_xor_B;
+    
+    // AND gate for Carry
+    and and1(Carry, A, B);
+
+endmodule
